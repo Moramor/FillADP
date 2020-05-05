@@ -1,3 +1,4 @@
+import argparse
 import math
 import time
 from datetime import datetime
@@ -16,6 +17,18 @@ from selenium.webdriver.common.by import By
 start_date_str = "27-04-2020"
 end_date_str = "04-05-2020"
 
+# Parser
+parser = argparse.ArgumentParser()
+parser.add_argument('--start','-s', default=start_date_str,
+                   help='Start date in format DD-MM-YYY')
+parser.add_argument('--end', '-e', default=end_date_str,
+                   help='End date in format DD-MM-YYY')
+
+args = vars(parser.parse_args())
+
+# Re-map variables
+start_date_str = args['start']
+end_date_str = args['end']
 
 # Browser driver instance creation. Here only works with chrome for Windows.
 # Chrome drivers for linux and mac available in the repo, change the binary name here
