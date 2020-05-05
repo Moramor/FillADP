@@ -8,7 +8,7 @@ If you want to use a different browser, check selenium page to get the download 
 and put it in the repo.
 
 
-#INSTRUCTIONS /!\ Important
+# INSTRUCTIONS /!\ Important
 
 first open filler.py with a text editor and fill the configuration variables according to your needs.
 Then run 'py filler.py' in a bash
