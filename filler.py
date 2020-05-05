@@ -78,7 +78,7 @@ driver_path = drivers_paths[args['os']]
 # Chrome drivers for linux and mac available in the repo, change the binary name here
 browser = webdriver.Chrome(driver_path)
 #Go to ADP website. If site not found, change URL to one that works for you
-browser.get("https://adfs.navya.tech/adfs/ls/idpinitiatedsignon.aspx?logintoRP=ADP-HRServices")
+browser.get(adp_url)
 original_window = browser.current_window_handle #save tab id
 
 # Open drown down menu "Temps et Activites" and click the link "Gestion des temps..."
