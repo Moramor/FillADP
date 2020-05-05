@@ -43,7 +43,7 @@ run resetter.py to erase all previously inputted data. This does not work if the
 
 I only recommend to leave the enterinator option default value on False as its consequences cannot be reversed.
 
-start_date_str =            Date on which the filling should start (included) "JJ-MM-YYY"
+start_date_str =            Date on which the filling should start (included) "JJ-MM-YYY". Do not start on a Saturday/Sunday
 end_date_str =              Date on which the filling should end (included) "JJ-MM-YYY"
 morning_start_time_str =    Arrival time in the morning "HH:MM" in 24 hours format
 evening_end_time_str =      Leave time in the evening "HH:MM" in 24 hours format

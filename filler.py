@@ -269,15 +269,30 @@ while True:
     wait(browser, 15).until(EC.element_to_be_clickable((By.ID, "dj_close_label")))
     back_button = browser.find_element_by_id("dj_close_label").click()
 
-    # Enterinate if required
-    if enterinator:
-        wait(browser, 15).until(EC.element_to_be_clickable((By.ID, "entBtn_label")))
-        enterinate_button = browser.find_element_by_id("entBtn_label").click()
-
     # If the end of the asked period is not reached, go to the next page
     if ((end_date - end_adp_date).days <= 0):
+        # Enterinate if required
+        if enterinator:
+            wait(browser, 15).until(EC.element_to_be_clickable((By.ID, "entBtn_label")))
+            enterinate_button = browser.find_element_by_id("entBtn_label").click()
+            # Enter end date before enterination on last week
+            wait(browser, 15).until(EC.element_to_be_clickable((By.ID, 'date_enteriner')))
+            date_formatted = end_date.strftime('%d') + '/' + end_date.strftime('%m') + '/' + end_date.strftime('%Y')
+            enterination_date = browser.find_element_by_id('date_enteriner')
+            enterination_date.send_keys(Keys.CONTROL + 'a')
+            enterination_date.send_keys(date_formatted)
+            wait(browser, 15).until(EC.element_to_be_clickable((By.ID, "entBtn2_label")))
+            enterinate_button2 = browser.find_element_by_id("entBtn2_label").click()
+
         break
     else:
+        # Enterinate if required
+        if enterinator:
+            wait(browser, 15).until(EC.element_to_be_clickable((By.ID, "entBtn_label")))
+            enterinate_button = browser.find_element_by_id("entBtn_label").click()
+            wait(browser, 15).until(EC.element_to_be_clickable((By.ID, "entBtn2_label")))
+            enterinate_button2 = browser.find_element_by_id("entBtn2_label").click()
+
         wait(browser, 15).until(EC.element_to_be_clickable((By.ID, "btnNext")))
         browser.find_element_by_id("btnNext").click()
         wait(browser, 15).until(EC.element_to_be_clickable((By.ID, "btnNext")))
