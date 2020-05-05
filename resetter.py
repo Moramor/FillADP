@@ -16,6 +16,8 @@ from selenium.webdriver.common.by import By
 # For hour : HH:MM (Hour, minute)
 start_date_str = "27-04-2020"
 end_date_str = "04-05-2020"
+operating_system = 'win64'
+adp_url = 'https://adfs.navya.tech/adfs/ls/idpinitiatedsignon.aspx?logintoRP=ADP-HRServices'
 
 # Parser
 parser = argparse.ArgumentParser()
@@ -23,18 +25,29 @@ parser.add_argument('--start','-s', default=start_date_str,
                    help='Start date in format DD-MM-YYY')
 parser.add_argument('--end', '-e', default=end_date_str,
                    help='End date in format DD-MM-YYY')
-
+parser.add_argument('--os','-o', action='store', default=operating_system,
+                   help='Operating system. Values : win64 win32 linux64 mac64')
+parser.add_argument('--url','-u', action='store', default=adp_url,
+                   help='ADP url.')
 args = vars(parser.parse_args())
 
 # Re-map variables
 start_date_str = args['start']
 end_date_str = args['end']
+adp_url = args['url']
+
+drivers_paths = {'win64': 'win64/chromedriver.exe',
+                'win32': 'win32/chromedriver.exe',
+                'linux64': 'linux64/chromedriver',
+                'mac64': 'mac64/chromedriver'}
+
+driver_path = drivers_paths[args['os']]
 
 # Browser driver instance creation. Here only works with chrome for Windows.
 # Chrome drivers for linux and mac available in the repo, change the binary name here
-browser = webdriver.Chrome("chromedriver.exe")
+browser = webdriver.Chrome(driver_path)
 #Go to ADP website. If site not found, change URL to one that works for you
-browser.get("https://adfs.navya.tech/adfs/ls/idpinitiatedsignon.aspx?logintoRP=ADP-HRServices")
+browser.get(adp_url)
 original_window = browser.current_window_handle #save tab id
 
 # Open drown down menu "Temps et Activites" and click the link "Gestion des temps..."

@@ -9,6 +9,10 @@
 Works by default with chrome browser on windows. You can switch the browser driver according to your OS 
 by unzipping the right driver in the repo and changing its reference in the code. 
 
+# Resetter
+
+run resetter.py to reset all non-enterinated data from the specified period.
+
 ## Not using Chrome ?
 
 If you want to use a different browser, check selenium page to get the download links to the right driver
