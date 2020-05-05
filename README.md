@@ -35,10 +35,6 @@ or computer is too slow. Try running the tool again as those errors are not happ
 
 Once the browser is launched after running filler.py you can reduce/unfocus the browser window.
 
-# Resetter
-
-run resetter.py to erase all previously inputted data. This does not work if there are "Enterinated" periods over the main period specified in configuration variables.
-
 # CONFIGURATION
 
 I only recommend to leave the enterinator option default value on False as its consequences cannot be reversed.
