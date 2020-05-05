@@ -26,6 +26,7 @@ domaine_name = 'DEVELOPPEMENT PLATEFORME'
 poste_name = 'MULTIPLATEFORME SOFTW'
 enterinator = False
 operating_system = 'win64'
+adp_url = 'https://adfs.navya.tech/adfs/ls/idpinitiatedsignon.aspx?logintoRP=ADP-HRServices'
 
 # Parser
 parser = argparse.ArgumentParser()
@@ -49,6 +50,8 @@ parser.add_argument('--enterinate','-Z', action='store_true', default=enterinato
                    help='Enterinate after filling')
 parser.add_argument('--os','-o', action='store', default=operating_system,
                    help='Operating system. Values : win64 win32 linux64 mac64')
+parser.add_argument('--url','-u', action='store', default=adp_url,
+                   help='ADP url.')
 
 args = vars(parser.parse_args())
 
@@ -62,6 +65,7 @@ lunch_break_time_end = args['lunch_end']
 domaine_name = args['domaine']
 poste_name = args['poste']
 enterinator = args['enterinate']
+adp_url = args['url']
 
 drivers_paths = {'win64': 'win64/chromedriver.exe',
                 'win32': 'win32/chromedriver.exe',
