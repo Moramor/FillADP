@@ -1,3 +1,4 @@
+import argparse
 import math
 import time
 from datetime import datetime
@@ -12,18 +13,53 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.keys import Keys
 
-# Configuration (dates are inclusive)
+# Defaut configuration (dates are inclusive)
 # For date : DD-MM-YYYY
 # For hour : HH:MM (Hour, minute)
-start_date_str = "27-04-2020"
-end_date_str = "04-05-2020"
+start_date_str = '01-04-2020'
+end_date_str = '01-05-2020'
 morning_start_time_str = "09:30"
 evening_end_time_str = "18:39"
 lunch_break_time_start = "13:00"
 lunch_break_time_end = "14:00"
 domaine_name = 'DEVELOPPEMENT PLATEFORME'
 poste_name = 'MULTIPLATEFORME SOFTW'
-enterinator = False #To enterinate or not. Better to try without first
+enterinator = False
+
+
+# Parser
+parser = argparse.ArgumentParser()
+parser.add_argument('--enterinate','-Z', action='store_true', default=enterinator,
+                   help='Enterinate after filling')
+parser.add_argument('--start','-s', default=start_date_str,
+                   help='Start date in format DD-MM-YYY')
+parser.add_argument('--end', '-e', default=end_date_str,
+                   help='End date in format DD-MM-YYY')
+parser.add_argument('--arrival_time', default=morning_start_time_str,
+                   help='Morning arrival time start in HH:MM 24-hours format')
+parser.add_argument('--leave_time', default=evening_end_time_str,
+                   help='Evening leave time start in HH:MM 24-hours format')
+parser.add_argument('--lunch_start', default=lunch_break_time_start,
+                   help='Lunch break time start in HH:MM 24-hours format')
+parser.add_argument('--lunch_end', default=lunch_break_time_end,
+                   help='Lunch break time end in HH:MM 24-hours format')
+parser.add_argument('--domaine', default=domaine_name,
+                   help='Domaine name for activity information. Available in the scroll down menu in ADP. Between " "')
+parser.add_argument('--poste', default=poste_name,
+                   help='Poste name for activity information. Available in the scroll down menu in ADP. Between " "')
+
+args = vars(parser.parse_args())
+
+# Re-map variables
+start_date_str = args['start']
+end_date_str = args['end']
+morning_start_time_str = args['arrival_time']
+evening_end_time_str = args['leave_time']
+lunch_break_time_start = args['lunch_start']
+lunch_break_time_end = args['lunch_end']
+domaine_name = args['domaine']
+poste_name = args['poste']
+enterinator = args['enterinate']
 
 # Browser driver instance creation. Here only works with chrome for Windows.
 # Chrome drivers for linux and mac available in the repo, change the binary name here
@@ -126,6 +162,7 @@ while True:
     # Mornings timesteps filling
     mornings = list(filter(lambda x: (x % 2 == 0), week_array))
     for i in range(len(mornings)):
+        # Mornings arrival timesteps filling
         date = start_adp_date + timedelta(days=mornings[i] / 2)
         id_morning = date.strftime('%d') + '/' + date.strftime('%m') + '/' + date.strftime('%Y') + '_0'
         wait(browser, 0.1).until(EC.element_to_be_clickable((By.ID, id_morning)))
@@ -190,7 +227,6 @@ while True:
             domaine = Select(browser.find_element_by_id('SEL_LIEUX_ANA'))
             # Can be selected by visible text or by id. Inspect the html page for the ids/names
             domaine.select_by_visible_text(domaine_name)
-            #time.sleep(0.2)
             # Select "Poste" option
             wait(browser, 15).until(EC.presence_of_element_located((By.ID, 'SEL_POSTE_ANA')))
             poste = Select(browser.find_element_by_id('SEL_POSTE_ANA'))
@@ -204,19 +240,6 @@ while True:
 
             duration_field = browser.find_element_by_id('VALEUR')
             duration_field.send_keys(Keys.CONTROL + 'a')
-            # duration_field.send_keys(Keys.DELETE)
-
-            """""
-            duration_field.clear()
-            # Sometimes the error message doesnt appear so we have to try
-            try:
-                wait(browser, 2).until(EC.element_to_be_clickable((By.ID, "btn1")))
-                ok_button = browser.find_element_by_id("btn1")
-                ok_button.click()
-            except:
-                pass
-            """
-
             duration_field.send_keys(global_duration)
             # Validation button
             wait(browser, 15).until(EC.element_to_be_clickable((By.ID, "ValiderPopupAct_label")))
