@@ -206,7 +206,6 @@ while True:
     time.sleep(2)
     table = browser.find_element_by_id("conteneur")
     rows = table.find_elements_by_class_name("detailJournalier.detail_pre_saisi")
-    print("\n\n\n TAYOOOO \n\n\n")
     rows[0].click()
 
     wait(browser, 15).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "div.dijitTabInnerDiv")))
@@ -244,7 +243,8 @@ while True:
             wait(browser, 15).until(EC.presence_of_element_located((By.ID, 'SEL_POSTE_ANA')))
             poste = Select(browser.find_element_by_id('SEL_POSTE_ANA'))
             # Can be selected by visible text or by id. Inspect the html page for the ids/names
-            time.sleep(0.2)
+            time.sleep(0.4)
+            #TODO: find a way to wait for scrollable menu option to be selectable instead of active wait
             poste.select_by_visible_text(poste_name)
 
             # Fill duration with global duration of the day
