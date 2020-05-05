@@ -29,8 +29,6 @@ enterinator = False
 
 # Parser
 parser = argparse.ArgumentParser()
-parser.add_argument('--enterinate','-Z', action='store_true', default=enterinator,
-                   help='Enterinate after filling')
 parser.add_argument('--start','-s', default=start_date_str,
                    help='Start date in format DD-MM-YYY')
 parser.add_argument('--end', '-e', default=end_date_str,
@@ -47,6 +45,8 @@ parser.add_argument('--domaine', default=domaine_name,
                    help='Domaine name for activity information. Available in the scroll down menu in ADP. Between " "')
 parser.add_argument('--poste', default=poste_name,
                    help='Poste name for activity information. Available in the scroll down menu in ADP. Between " "')
+parser.add_argument('--enterinate','-Z', action='store_true', default=enterinator,
+                   help='Enterinate after filling')
 
 args = vars(parser.parse_args())
 
