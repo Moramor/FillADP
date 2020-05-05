@@ -9,8 +9,6 @@ from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait as wait
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import Select
-from selenium.webdriver.common.keys import Keys
 
 # Configuration (dates are inclusive)
 # For date : DD-MM-YYYY
@@ -117,28 +115,28 @@ while True:
               "will be ignored [Out of filling interval]")
 
     # Get link to timestep field of each half day which was not filtered out
-    # Mornings timesteps filling
+    # Mornings timesteps deletion
     mornings = list(filter(lambda x: (x % 2 == 0), week_array))
     for i in range(len(mornings)):
+        # Morning arrival timesteps deletion
         date = start_adp_date + timedelta(days=mornings[i] / 2)
         id_morning = date.strftime('%d') + '/' + date.strftime('%m') + '/' + date.strftime('%Y') + '_0'
         wait(browser, 0.1).until(EC.element_to_be_clickable((By.ID, id_morning)))
         browser.find_element_by_id(id_morning).clear()
-    # Lunch break start timesteps filling
+    # Lunch break start timesteps deletion
         id_lunch_start = date.strftime('%d') + '/' + date.strftime('%m') + '/' + date.strftime('%Y') + '_1'
         wait(browser, 0.1).until(EC.element_to_be_clickable((By.ID, id_lunch_start)))
         browser.find_element_by_id(id_lunch_start).clear()
-        #duration_field.send_keys(Keys.CONTROL + 'a')
-        # duration_field.send_keys(Keys.DELETE)
-    # Afternoons timesteps filling
+
+    # Afternoons timesteps deletion
     afternoons = list(filter(lambda x: (x % 2 == 1), week_array))
     for i in range(len(afternoons)):
         date = start_adp_date + timedelta(days=math.floor(afternoons[i] / 2))
-        # Lunch break start timesteps filling
+        # Lunch break start timesteps deletion
         id_lunch_end = date.strftime('%d') + '/' + date.strftime('%m') + '/' + date.strftime('%Y') + '_2'
         wait(browser, 0.1).until(EC.element_to_be_clickable((By.ID, id_lunch_end)))
         browser.find_element_by_id(id_lunch_end).clear()
-        # Leave time filling
+        # Leave time deletion
         id_leave = date.strftime('%d') + '/' + date.strftime('%m') + '/' + date.strftime('%Y') + '_3'
         wait(browser, 0.1).until(EC.element_to_be_clickable((By.ID, id_leave)))
         browser.find_element_by_id(id_leave).clear()

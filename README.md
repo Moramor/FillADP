@@ -1,12 +1,20 @@
 # Requirements
 Selenium : http://www.selenium.dev
 'pip install selenium'
+Google Chrome browser.
+
 # ADP Automatic filler
 Works by default with chrome browser on windows. You can switch the browser driver according to your OS 
 by unzipping the right driver in the repo and changing its reference in the code. 
-If you want to use a different browser, check selenium page to get the download links to the right driver
-and put it in the repo.
 
+## Not using Chrome ?
+
+If you want to use a different browser, check selenium page to get the download links to the right driver
+and put it in the repo. Change the reference in the script to use the right driver. A little extra compatibility work might be needed.
+
+# Arguments
+
+'-e', '--enterinate'    Activate enterination
 
 # INSTRUCTIONS /!\ Important
 
@@ -14,13 +22,21 @@ first open filler.py with a text editor and fill the configuration variables acc
 Then run 'py filler.py' in a bash
 
 This tool is basically a clickbot on a webbrowser. Avoid having your mouse over the browser when the bot is running
-as unvolontarily hovering over a menu could prevent other actions (for instance). Timeout errors can happen if your connexion
-or computer is too slow. Try launching the tool again as they are not-systematic.
+as unvolontarily hovering over a menu could prevent other actions. Timeout errors can happen if your connexion
+or computer is too slow. Try running the tool again as those errors are not happening consistently.
 
-Once the browser is launched when running filler.py you can reduce/unfocus the browser window.
+Once the browser is launched after running filler.py you can reduce/unfocus the browser window.
 
+# Resetter
+
+run resetter.py to erase all previously inputted data. This does not work if there are "Enterinated" periods over the main period specified in configuration variables.
 
 # CONFIGURATION
+
+Run script with -h to get the detail of the required configuration. As the script can be launched specifying every option,
+it is easier to edit the script and change the default values according to you as they will not change much for a same person.
+
+I only recommend to leave the enterinator option default value on False as its consequences cannot be reversed.
 
 start_date_str =            Date on which the filling should start (included) "JJ-MM-YYY"
 end_date_str =              Date on which the filling should end (included) "JJ-MM-YYY"
