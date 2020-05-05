@@ -11,7 +11,10 @@ by unzipping the right driver in the repo and changing its reference in the code
 
 # Resetter
 
-run resetter.py to reset all non-enterinated data from the specified period.
+run 
+
+    py resetter.py
+to reset all non-enterinated data from the specified period.
 
 ## Not using Chrome ?
 
@@ -27,7 +30,14 @@ and change the default values according to you as they will not change much for 
 
 First, open filler.py with a text editor and fill the configuration variables according to your needs.
 
-Then run 'py filler.py' with the remaining options
+Then run
+ 
+    py filler.py            # enterination OFF
+or
+
+    py filler.py -Z         # enterination ON
+    
+
 
 This tool is basically a clickbot on a webbrowser. Avoid having your mouse over the browser when the bot is running
 as unvolontarily hovering over a menu could prevent other actions. Timeout errors can happen if your connexion
@@ -39,14 +49,14 @@ Once the browser is launched after running filler.py you can reduce/unfocus the 
 
 I only recommend to leave the enterinator option default value on False as its consequences cannot be reversed.
 
-start_date_str =            Date on which the filling should start (included) "JJ-MM-YYY". Do not start on a Saturday/Sunday
-end_date_str =              Date on which the filling should end (included) "JJ-MM-YYY"
-morning_start_time_str =    Arrival time in the morning "HH:MM" in 24 hours format
-evening_end_time_str =      Leave time in the evening "HH:MM" in 24 hours format
-lunch_break =               Toggle lunch break time precision (If false, the lunch break minimal time of 45 mins will automatically be considered by ADP)
-lunch_break_time_start =    Lunch break start time "HH:MM" in 24 hours format
-lunch_break_time_end =      Lunch break end time "HH:MM" in 24 hours format
-domaine_name =              Name of the option in the "Domaine" menu
-poste_name =                Name of the option in the "Projet" menu
-enterinator =               To enterinate or not. Better to try without first
-operating_system =          Your operating system between those options : 'win64','win32','linux64','mac64'. Using another OS ? Too bad
+    start_date_str =            Date on which the filling should start (included) "JJ-MM-YYY". Do not start on a Saturday/Sunday
+    end_date_str =              Date on which the filling should end (included) "JJ-MM-YYY"
+    morning_start_time_str =    Arrival time in the morning "HH:MM" in 24 hours format
+    evening_end_time_str =      Leave time in the evening "HH:MM" in 24 hours format
+    lunch_break =               Toggle lunch break time precision (If false, the lunch break minimal time of 45 mins will automatically be considered by ADP)
+    lunch_break_time_start =    Lunch break start time "HH:MM" in 24 hours format
+    lunch_break_time_end =      Lunch break end time "HH:MM" in 24 hours format
+    domaine_name =              Name of the option in the "Domaine" menu
+    poste_name =                Name of the option in the "Projet" menu
+    enterinator =               To enterinate or not. Better to try without first
+    operating_system =          Your operating system between those options : 'win64','win32','linux64','mac64'. Using another OS ? Too bad
