@@ -25,7 +25,7 @@ lunch_break_time_end = "14:00"
 domaine_name = 'DEVELOPPEMENT PLATEFORME'
 poste_name = 'MULTIPLATEFORME SOFTW'
 enterinator = False
-
+operating_system = 'win64'
 
 # Parser
 parser = argparse.ArgumentParser()
@@ -47,6 +47,8 @@ parser.add_argument('--poste', default=poste_name,
                    help='Poste name for activity information. Available in the scroll down menu in ADP. Between " "')
 parser.add_argument('--enterinate','-Z', action='store_true', default=enterinator,
                    help='Enterinate after filling')
+parser.add_argument('--os','-o', action='store', default=operating_system,
+                   help='Operating system. Values : win64 win32 linux64 mac64')
 
 args = vars(parser.parse_args())
 
@@ -61,9 +63,16 @@ domaine_name = args['domaine']
 poste_name = args['poste']
 enterinator = args['enterinate']
 
+drivers_paths = {'win64': 'win64/chromedriver.exe',
+                'win32': 'win32/chromedriver.exe',
+                'linux64': 'linux64/chromedriver',
+                'mac64': 'mac64/chromedriver'}
+
+driver_path = drivers_paths[args['os']]
+
 # Browser driver instance creation. Here only works with chrome for Windows.
 # Chrome drivers for linux and mac available in the repo, change the binary name here
-browser = webdriver.Chrome("chromedriver.exe")
+browser = webdriver.Chrome(driver_path)
 #Go to ADP website. If site not found, change URL to one that works for you
 browser.get("https://adfs.navya.tech/adfs/ls/idpinitiatedsignon.aspx?logintoRP=ADP-HRServices")
 original_window = browser.current_window_handle #save tab id
