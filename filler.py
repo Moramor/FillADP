@@ -4,6 +4,7 @@ import time
 from datetime import datetime
 from datetime import date
 from datetime import timedelta
+import sys
 
 # selenium
 from selenium import webdriver
@@ -73,6 +74,18 @@ drivers_paths = {'win64': 'win64/chromedriver.exe',
                 'mac64': 'mac64/chromedriver'}
 
 driver_path = drivers_paths[args['os']]
+
+# Output brief on variables
+if enterinator:
+    enterin_status = 'ON'
+else:
+    enterin_status = 'OFF'
+
+print("\n\nStarting ADPROUT automatic filling with ENTERINATION", enterin_status,'\n'
+      'On time interval : [',start_date_str,'-',end_date_str,']','\n'
+      'You worked each day from',morning_start_time_str,'to',evening_end_time_str,'\n'
+      'And ate like the little piggy you are from',lunch_break_time_start,'to',lunch_break_time_end,'\n')
+sys.stdout.flush()
 
 # Browser driver instance creation. Here only works with chrome for Windows.
 # Chrome drivers for linux and mac available in the repo, change the binary name here
