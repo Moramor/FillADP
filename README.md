@@ -18,3 +18,17 @@ as unvolontarily hovering over a menu could prevent other actions (for instance)
 or computer is too slow. Try launching the tool again as they are not-systematic.
 
 Once the browser is launched when running filler.py you can reduce/unfocus the browser window.
+
+
+# CONFIGURATION
+
+start_date_str =            Date on which the filling should start (included) "JJ-MM-YYY"
+end_date_str =              Date on which the filling should end (included) "JJ-MM-YYY"
+morning_start_time_str =    Arrival time in the morning "HH:MM" in 24 hours format
+evening_end_time_str =      Leave time in the evening "HH:MM" in 24 hours format
+lunch_break =               Toggle lunch break time precision (If false, the lunch break minimal time of 45 mins will automatically be considered by ADP)
+lunch_break_time_start =    Lunch break start time "HH:MM" in 24 hours format
+lunch_break_time_end =      Lunch break end time "HH:MM" in 24 hours format
+domaine_name =              Name of the option in the "Domaine" menu
+poste_name =                Name of the option in the "Projet" menu
+enterinator =               To enterinate or not. Better to try without first

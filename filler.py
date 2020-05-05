@@ -18,8 +18,9 @@ from selenium.webdriver.common.keys import Keys
 start_date_str = "27-04-2020"
 end_date_str = "04-05-2020"
 morning_start_time_str = "09:30"
-evening_end_time_str = "17:39"
-time_worked_in_a_day = "08:09"
+evening_end_time_str = "18:39"
+lunch_break_time_start = "13:00"
+lunch_break_time_end = "14:00"
 domaine_name = 'DEVELOPPEMENT PLATEFORME'
 poste_name = 'MULTIPLATEFORME SOFTW'
 enterinator = False #To enterinate or not. Better to try without first
@@ -126,18 +127,26 @@ while True:
     mornings = list(filter(lambda x: (x % 2 == 0), week_array))
     for i in range(len(mornings)):
         date = start_adp_date + timedelta(days=mornings[i] / 2)
-        id_day = date.strftime('%d') + '/' + date.strftime('%m') + '/' + date.strftime('%Y') + '_0'
-        wait(browser, 0.1).until(EC.element_to_be_clickable((By.ID, id_day)))
-        browser.find_element_by_id(id_day).send_keys(morning_start_time_str)
+        id_morning = date.strftime('%d') + '/' + date.strftime('%m') + '/' + date.strftime('%Y') + '_0'
+        wait(browser, 0.1).until(EC.element_to_be_clickable((By.ID, id_morning)))
+        browser.find_element_by_id(id_morning).send_keys(morning_start_time_str)
+    # Lunch break start timesteps filling
+        id_lunch_start = date.strftime('%d') + '/' + date.strftime('%m') + '/' + date.strftime('%Y') + '_1'
+        wait(browser, 0.1).until(EC.element_to_be_clickable((By.ID, id_lunch_start)))
+        browser.find_element_by_id(id_lunch_start).send_keys(lunch_break_time_start)
 
     # Afternoons timesteps filling
     afternoons = list(filter(lambda x: (x % 2 == 1), week_array))
     for i in range(len(afternoons)):
         date = start_adp_date + timedelta(days=math.floor(afternoons[i] / 2))
-        id_day = date.strftime('%d') + '/' + date.strftime('%m') + '/' + date.strftime('%Y') + '_1'
-        wait(browser, 0.1).until(EC.element_to_be_clickable((By.ID, id_day)))
-        browser.find_element_by_id(id_day).send_keys(evening_end_time_str)
-
+        # Lunch break start timesteps filling
+        id_lunch_end = date.strftime('%d') + '/' + date.strftime('%m') + '/' + date.strftime('%Y') + '_2'
+        wait(browser, 0.1).until(EC.element_to_be_clickable((By.ID, id_lunch_end)))
+        browser.find_element_by_id(id_lunch_end).send_keys(lunch_break_time_end)
+        # Leave time filling
+        id_leave = date.strftime('%d') + '/' + date.strftime('%m') + '/' + date.strftime('%Y') + '_3'
+        wait(browser, 0.1).until(EC.element_to_be_clickable((By.ID, id_leave)))
+        browser.find_element_by_id(id_leave).send_keys(evening_end_time_str)
     # Save
     wait(browser, 15).until(EC.element_to_be_clickable((By.ID, "savBtn_label")))
     save_button = browser.find_element_by_id("savBtn_label")
