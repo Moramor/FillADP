@@ -20,8 +20,8 @@ from selenium.webdriver.common.keys import Keys
 start_date_str = '01-04-2020'
 end_date_str = '01-05-2020'
 morning_start_time_str = "09:30"
-evening_end_time_str = "18:39"
-lunch_break_time_start = "13:00"
+evening_end_time_str = "18:00"
+lunch_break_time_start = "12:30"
 lunch_break_time_end = "14:00"
 domaine_name = 'DEVELOPPEMENT PLATEFORME'
 poste_name = 'MULTIPLATEFORME SOFTW'
@@ -32,9 +32,9 @@ adp_url = 'https://adfs.navya.tech/adfs/ls/idpinitiatedsignon.aspx?logintoRP=ADP
 # Parser
 parser = argparse.ArgumentParser()
 parser.add_argument('--start','-s', default=start_date_str,
-                   help='Start date in format DD-MM-YYY')
+                   help='Start date in format DD-MM-YYYY')
 parser.add_argument('--end', '-e', default=end_date_str,
-                   help='End date in format DD-MM-YYY')
+                   help='End date in format DD-MM-YYYY')
 parser.add_argument('--arrival_time', default=morning_start_time_str,
                    help='Morning arrival time start in HH:MM 24-hours format')
 parser.add_argument('--leave_time', default=evening_end_time_str,
