@@ -17,10 +17,10 @@ from selenium.webdriver.common.keys import Keys
 # Defaut configuration (dates are inclusive)
 # For date : DD-MM-YYYY
 # For hour : HH:MM (Hour, minute)
-start_date_str = '01-04-2020'
-end_date_str = '01-05-2020'
+start_date_str = '22-06-2020'
+end_date_str = '08-07-2020'
 morning_start_time_str = "09:30"
-evening_end_time_str = "18:00"
+evening_end_time_str = "18:24"
 lunch_break_time_start = "12:30"
 lunch_break_time_end = "14:00"
 domaine_name = 'DEVELOPPEMENT PLATEFORME'
