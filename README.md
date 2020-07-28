@@ -28,7 +28,8 @@ and change the default values according to you as they will not change much for 
 
 # INSTRUCTIONS
 
-First, open filler.py with a text editor and fill the configuration variables according to your needs.
+First, open config.yml with a text editor and fill the configuration variables according to your needs.
+If this is your first use of ADPROUT, also fill adprout/last_filled with the date of the last enterinated entry in your ADP calendar.
 
 Then run
  
