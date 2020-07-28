@@ -81,10 +81,10 @@ if enterinator:
 else:
     enterin_status = 'OFF'
 
-print("\n\nStarting ADPROUT automatic filling with ENTERINATION", enterin_status,'\n'
+print("\n\nStarting ADPROUT automatic filling with ENTERINATION \x1b[6;30;42m", enterin_status,'\x1b[0m\n'
       'On time interval : [',start_date_str,'-',end_date_str,']','\n'
-      'You worked each day from',morning_start_time_str,'to',evening_end_time_str,'\n'
-      'And ate like the little piggy you are from',lunch_break_time_start,'to',lunch_break_time_end,'\n')
+      'You worked each day from\x1b[6;30;42m',morning_start_time_str,'to',evening_end_time_str,'\x1b[0m\n'
+      'And ate like the little piggy you are from\x1b[6;30;42m',lunch_break_time_start,'to',lunch_break_time_end,'\x1b[0m\n')
 sys.stdout.flush()
 
 # Browser driver instance creation. Here only works with chrome for Windows.
