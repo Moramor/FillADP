@@ -1,9 +1,7 @@
 # Requirements
 
-    - Selenium : http://www.selenium.dev 
-    'pip install selenium'
-    
     - Google Chrome browser.
+    - Already have connected to ADP in Chrome with your account and have an automatic connexion set up
 
 # ADP Automatic filler
 Works by default with chrome browser on windows. You can switch the browser driver according to your OS 
@@ -23,7 +21,7 @@ and put it in the repo. Change the reference in the script to use the right driv
 
 # Arguments
 
-Run script with -h to get the detail of the arguments. As there are many arguments, it is easier to edit the script
+Run script with -h to get the detail of the arguments. As there are many arguments, it is easier to edit the config.yml file
 and change the default values according to you as they will not change much for a same person.
 
 # INSTRUCTIONS
@@ -31,20 +29,22 @@ and change the default values according to you as they will not change much for 
 First, open config.yml with a text editor and fill the configuration variables according to your needs.
 If this is your first use of ADPROUT, also fill adprout/last_filled with the date of the last enterinated entry in your ADP calendar.
 
-Then run
+Then open a bash into the repo root folder and enter
  
-    py filler.py            # enterination OFF
-or
+    python -m pip install .     # This installs the adprout command
+then
 
-    py filler.py -Z         # enterination ON
+    adprout         # This starts filling your adp with enterination OFF
     
+After running adprout once and checking everything was correctly filled, you can now run
 
+    adprout -Z      # This starts filling your adp with enterination ON
 
 This tool is basically a clickbot on a webbrowser. Avoid having your mouse over the browser when the bot is running
 as unvolontarily hovering over a menu could prevent other actions. Timeout errors can happen if your connexion
 or computer is too slow. Try running the tool again as those errors are not happening consistently.
 
-Once the browser is launched after running filler.py you can reduce/unfocus the browser window.
+Once the browser is launched after running the command you can reduce/unfocus the browser window.
 
 # CONFIGURATION
 
