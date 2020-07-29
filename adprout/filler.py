@@ -430,6 +430,8 @@ def fill_adp():
                 enterinate_button2 = browser.find_element_by_id("entBtn2_label").click()
 
                 # Save date of filling end for next execution only if enterinated
+                if not os.path.isfile(script_data_folder + "/adprout_fill.txt"):
+                    os.makedirs(script_data_folder, exist_ok=True)
                 last_fill = (
                         end_date.strftime("%d")
                         + "-"
