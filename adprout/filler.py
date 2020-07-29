@@ -112,8 +112,10 @@ def fill_adp():
     appname = "ADPROUT"
     script_data_folder = appdirs.user_data_dir(appname)
     if start_date_str == None:
+        # If last fill date was never saved, create necessary folders and file
         if not os.path.isfile(script_data_folder + "/adprout_fill.txt"):
             os.makedirs(script_data_folder, exist_ok=True)
+            # Initialize last fill one month before
             one_month_ago = datetime.now() - timedelta(days=30)
             one_month_ago_txt = (
                     one_month_ago.strftime("%d")
@@ -452,7 +454,7 @@ def fill_adp():
         + "-"
         + end_date.strftime("%Y")
     )
-    with open(script_data_folder + "/adprout_fill.txt", "wb") as txt:
+    with open(script_data_folder + "/adprout_fill.txt", "w+") as txt:
         txt.write(last_fill)
 
     print("ADPROUT Execution Success !!")
