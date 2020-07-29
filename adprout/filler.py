@@ -402,7 +402,7 @@ def fill_adp():
             wait(browser, 15).until(EC.element_to_be_clickable((By.ID, "dj_close_label")))
             back_button = browser.find_element_by_id("dj_close_label").click()
 
-        # If the end of the asked period is not reached, go to the next page
+        # If the end of the asked period is reached, enterinate if needed and stop
         if (end_date - end_adp_date).days <= 0:
             # Enterinate if required
             if enterinator:
@@ -429,7 +429,20 @@ def fill_adp():
                 )
                 enterinate_button2 = browser.find_element_by_id("entBtn2_label").click()
 
-            break
+                # Save date of filling end for next execution only if enterinated
+                last_fill = (
+                        end_date.strftime("%d")
+                        + "-"
+                        + end_date.strftime("%m")
+                        + "-"
+                        + end_date.strftime("%Y")
+                )
+                with open(script_data_folder + "/adprout_fill.txt", "w+") as txt:
+                    txt.write(last_fill)
+
+            break # break out of looping over weeks
+
+        # If the end of the asked period is not reached, enterinate if needed and go to the next page
         else:
             # Enterinate if required
             if enterinator:
@@ -445,17 +458,6 @@ def fill_adp():
             wait(browser, 15).until(EC.element_to_be_clickable((By.ID, "btnNext")))
             browser.find_element_by_id("btnNext").click()
             wait(browser, 15).until(EC.element_to_be_clickable((By.ID, "btnNext")))
-
-    # Save date of filling end for next execution
-    last_fill = (
-        end_date.strftime("%d")
-        + "-"
-        + end_date.strftime("%m")
-        + "-"
-        + end_date.strftime("%Y")
-    )
-    with open(script_data_folder + "/adprout_fill.txt", "w+") as txt:
-        txt.write(last_fill)
 
     print("ADPROUT Execution Success !!")
 
