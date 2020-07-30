@@ -95,6 +95,18 @@ def fill_adp():
             window_2 = window_handle
             break
 
+    # Ensure ADP is on "Collaborateur" mode
+    wait(browser, 15).until(
+        EC.presence_of_element_located((By.ID, "roleUser_label"))
+    )
+    role =browser.find_element_by_id("roleUser_label")
+    role.click()
+    wait(browser, 15).until(
+        EC.presence_of_element_located((By.ID, "dijit_MenuItem_0_text"))
+    )    # TODO: find a way to wait for scrollable menu option to be selectable instead of active wait
+    role_collab = (browser.find_element_by_id("dijit_MenuItem_0_text"))
+    role_collab.click()
+
     # Open drown down menu "Temps / Activites" and click the link "Déclarer présence/act"
     wait(browser, 15).until(
         EC.element_to_be_clickable((By.ID, "revit_navigation_NavHoverItem_1_label"))
