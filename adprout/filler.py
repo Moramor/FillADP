@@ -20,7 +20,7 @@ from selenium.common.exceptions import TimeoutException
 
 def fill_adp():
     # Import configuration with default values
-    config = yaml.safe_load(open("config.yml"))
+    config = yaml.safe_load(open(os.path.abspath(os.curdir) + "/config.yml"))
     start_date_str = config["start_date_str"]
     end_date_str = config["end_date_str"]
     morning_start_time_str = config["morning_start_time_str"]
