@@ -72,7 +72,9 @@ def fill_adp():
 
     # Browser driver instance creation. Here only works with chrome for Windows.
     # Chrome drivers for linux and mac available in the repo, change the binary name here
-    browser = webdriver.Chrome(driver_path)
+    from webdriver_manager.chrome import ChromeDriverManager
+    browser = webdriver.Chrome(ChromeDriverManager().install())
+
     # Go to ADP website. If site not found, change URL to one that works for you
     browser.get(adp_url)
     original_window = browser.current_window_handle  # save tab id
@@ -428,7 +430,7 @@ def fill_adp():
                 )
                 if end_date.get_weekday() == 4:
                     end_date += timedelta(days=2)
-                    
+
                 date_formatted = (
                     end_date.strftime("%d")
                     + "/"
