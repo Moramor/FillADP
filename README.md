@@ -1,3 +1,12 @@
+# IMPORTANT
+
+Whenever your pull a new version, run
+
+    python -m pip install .
+
+In a bash in the repo's folder. This will ensure the script is updated when you run it.
+
+
 # Requirements
 
     - Google Chrome browser.
