@@ -428,9 +428,9 @@ def fill_adp():
                 wait(browser, 15).until(
                     EC.element_to_be_clickable((By.ID, "date_enteriner"))
                 )
-                if end_date.get_weekday() == 4:
+                if end_date.weekday() == 4:
                     end_date += timedelta(days=2)
-
+    
                 date_formatted = (
                     end_date.strftime("%d")
                     + "/"
