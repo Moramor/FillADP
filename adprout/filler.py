@@ -80,10 +80,10 @@ def fill_adp():
     original_window = browser.current_window_handle  # save tab id
 
     # Open drown down menu "Temps et Activites" and click the link "Gestion des temps..."
-    wait(browser, 15).until(EC.element_to_be_clickable((By.ID, "menu_2_navItem_label")))
+    wait(browser, 45).until(EC.element_to_be_clickable((By.ID, "menu_2_navItem_label")))
     link1 = browser.find_element_by_id("menu_2_navItem_label")
     link1.click()
-    wait(browser, 15).until(
+    wait(browser, 45).until(
         EC.element_to_be_clickable((By.ID, "dijit_layout_ContentPane_1"))
     )
     link2 = browser.find_element_by_id("dijit_layout_ContentPane_1")
