@@ -9,3 +9,4 @@ poste_name: "MULTIPLATEFORME SOFTW"         # Poste name for activity informatio
 enterinator: False                          # Enterinate after filling. True or False
 operating_system: "win64"                     # Operating system. Values: win64 win32 linux64 mac64
 adp_url: "https://adfs.navya.tech/adfs/ls/idpinitiatedsignon.aspx?logintoRP=ADP-HRServices"   # ADP URL
+timeout: 45   # Timeout in seconds when a request on web page cannot be done

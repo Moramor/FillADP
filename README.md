@@ -6,6 +6,7 @@ Whenever your pull a new version, run
 
 In a bash in the repo's folder. This will ensure the script is updated when you run it.
 
+/!\ THIS TOOL DOES NOT WORK ON LINUX YET. PLEASE USE WINDOWS
 
 # Requirements
 

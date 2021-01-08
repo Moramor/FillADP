@@ -32,6 +32,7 @@ def fill_adp():
     enterinator = config["enterinator"]
     operating_system = config["operating_system"]
     adp_url = config["adp_url"]
+    timeout = config["timeout"]
 
     # Parse arguments
     (
@@ -80,17 +81,17 @@ def fill_adp():
     original_window = browser.current_window_handle  # save tab id
 
     # Open drown down menu "Temps et Activites" and click the link "Gestion des temps..."
-    wait(browser, 45).until(EC.element_to_be_clickable((By.ID, "menu_2_navItem_label")))
+    wait(browser, timeout).until(EC.element_to_be_clickable((By.ID, "menu_2_navItem_label")))
     link1 = browser.find_element_by_id("menu_2_navItem_label")
     link1.click()
-    wait(browser, 45).until(
+    wait(browser, timeout).until(
         EC.element_to_be_clickable((By.ID, "dijit_layout_ContentPane_1"))
     )
     link2 = browser.find_element_by_id("dijit_layout_ContentPane_1")
     link2.click()
 
     # Wait for new tab to open and switch tab
-    wait(browser, 15).until(EC.number_of_windows_to_be(2))
+    wait(browser, timeout).until(EC.number_of_windows_to_be(2))
     for window_handle in browser.window_handles:
         if window_handle != original_window:
             browser.switch_to.window(window_handle)
@@ -98,24 +99,24 @@ def fill_adp():
             break
 
     # Ensure ADP is on "Collaborateur" mode
-    wait(browser, 15).until(
+    wait(browser, timeout).until(
         EC.presence_of_element_located((By.ID, "roleUser_label"))
     )
     role =browser.find_element_by_id("roleUser_label")
     role.click()
-    wait(browser, 15).until(
+    wait(browser, timeout).until(
         EC.presence_of_element_located((By.ID, "dijit_MenuItem_0_text"))
     )    # TODO: find a way to wait for scrollable menu option to be selectable instead of active wait
     role_collab = (browser.find_element_by_id("dijit_MenuItem_0_text"))
     role_collab.click()
 
     # Open drown down menu "Temps / Activites" and click the link "Déclarer présence/act"
-    wait(browser, 15).until(
+    wait(browser, timeout).until(
         EC.element_to_be_clickable((By.ID, "revit_navigation_NavHoverItem_1_label"))
     )
     link3 = browser.find_element_by_id("revit_navigation_NavHoverItem_1_label")
     link3.click()
-    wait(browser, 15).until(
+    wait(browser, timeout).until(
         EC.element_to_be_clickable((By.ID, "revit_navigation_NavItem_2_label"))
     )
     link4 = browser.find_element_by_id("revit_navigation_NavItem_2_label")
@@ -160,8 +161,8 @@ def fill_adp():
     else:
         end_date = datetime.strptime(end_date_str, "%d-%m-%Y").date()
 
-    wait(browser, 15).until(EC.element_to_be_clickable((By.ID, "btnPrev")))
-    wait(browser, 15).until(EC.element_to_be_clickable((By.ID, "btnNext")))
+    wait(browser, timeout).until(EC.element_to_be_clickable((By.ID, "btnPrev")))
+    wait(browser, timeout).until(EC.element_to_be_clickable((By.ID, "btnNext")))
 
     # If adp dates display is ahead of start filling date, let's go back in time Morty
     while True:
@@ -178,12 +179,12 @@ def fill_adp():
         elif (start_date - start_adp_date).days > 6:
             browser.find_element_by_id("btnNext").click()
         else:
-            wait(browser, 15).until(EC.element_to_be_clickable((By.ID, "btnNext")))
-            wait(browser, 15).until(EC.element_to_be_clickable((By.ID, "btnPrev")))
+            wait(browser, timeout).until(EC.element_to_be_clickable((By.ID, "btnNext")))
+            wait(browser, timeout).until(EC.element_to_be_clickable((By.ID, "btnPrev")))
             break
 
-        wait(browser, 15).until(EC.element_to_be_clickable((By.ID, "btnNext")))
-        wait(browser, 15).until(EC.element_to_be_clickable((By.ID, "btnPrev")))
+        wait(browser, timeout).until(EC.element_to_be_clickable((By.ID, "btnNext")))
+        wait(browser, timeout).until(EC.element_to_be_clickable((By.ID, "btnPrev")))
 
     # Loop over weeks until end date is reached
     while True:
@@ -270,7 +271,7 @@ def fill_adp():
             )
 
             try:
-                wait(browser, 0.1).until(EC.element_to_be_clickable((By.ID, id_morning)))
+                wait(browser, timeout).until(EC.element_to_be_clickable((By.ID, id_morning)))
             except TimeoutException:
                 continue
 
@@ -285,7 +286,7 @@ def fill_adp():
                 + date.strftime("%Y")
                 + "_1"
             )
-            wait(browser, 0.1).until(
+            wait(browser, timeout).until(
                 EC.element_to_be_clickable((By.ID, id_lunch_start))
             )
             browser.find_element_by_id(id_lunch_start).send_keys(lunch_break_time_start)
@@ -305,7 +306,7 @@ def fill_adp():
             )
 
             try:
-                wait(browser, 0.1).until(EC.element_to_be_clickable((By.ID, id_lunch_end)))
+                wait(browser, timeout).until(EC.element_to_be_clickable((By.ID, id_lunch_end)))
             except TimeoutException:
                 continue
 
@@ -320,12 +321,12 @@ def fill_adp():
                 + date.strftime("%Y")
                 + "_3"
             )
-            wait(browser, 0.1).until(EC.element_to_be_clickable((By.ID, id_leave)))
+            wait(browser, timeout).until(EC.element_to_be_clickable((By.ID, id_leave)))
             browser.find_element_by_id(id_leave).send_keys(evening_end_time_str)
 
         if something_filled:
             # Save
-            wait(browser, 15).until(EC.element_to_be_clickable((By.ID, "savBtn_label")))
+            wait(browser, timeout).until(EC.element_to_be_clickable((By.ID, "savBtn_label")))
             save_button = browser.find_element_by_id("savBtn_label")
             save_button.click()
 
@@ -335,7 +336,7 @@ def fill_adp():
             rows = table.find_elements_by_class_name("detailJournalier.detail_pre_saisi")
             rows[0].click()
 
-            wait(browser, 15).until(
+            wait(browser, timeout).until(
                 EC.element_to_be_clickable((By.CSS_SELECTOR, "div.dijitTabInnerDiv"))
             )
             activite_tab = browser.find_elements_by_class_name("tabLabel")[4]
@@ -368,14 +369,14 @@ def fill_adp():
                     add_activity.click()
 
                     # Select "Domaine" option
-                    wait(browser, 15).until(
+                    wait(browser, timeout).until(
                         EC.presence_of_element_located((By.ID, "SEL_LIEUX_ANA"))
                     )
                     domaine = Select(browser.find_element_by_id("SEL_LIEUX_ANA"))
                     # Can be selected by visible text or by id. Inspect the html page for the ids/names
                     domaine.select_by_visible_text(domaine_name)
                     # Select "Poste" option
-                    wait(browser, 15).until(
+                    wait(browser, timeout).until(
                         EC.presence_of_element_located((By.ID, "SEL_POSTE_ANA"))
                     )
                     poste = Select(browser.find_element_by_id("SEL_POSTE_ANA"))
@@ -396,36 +397,36 @@ def fill_adp():
                     duration_field.send_keys(Keys.CONTROL + "a")
                     duration_field.send_keys(global_duration)
                     # Validation button
-                    wait(browser, 15).until(
+                    wait(browser, timeout).until(
                         EC.element_to_be_clickable((By.ID, "ValiderPopupAct_label"))
                     )
                     browser.find_element_by_id("ValiderPopupAct_label").click()
 
-                    wait(browser, 15).until(
+                    wait(browser, timeout).until(
                         EC.element_to_be_clickable((By.ID, "EnregistrerAct_label"))
                     )
                     save_button = browser.find_element_by_id("EnregistrerAct_label")
                     save_button.click()
 
                 # Go to next day of the week
-                wait(browser, 15).until(
+                wait(browser, timeout).until(
                     EC.element_to_be_clickable((By.ID, "popup_dj_next_date"))
                 )
                 next_day_button = browser.find_element_by_id("popup_dj_next_date").click()
 
-            wait(browser, 15).until(EC.element_to_be_clickable((By.ID, "dj_close_label")))
+            wait(browser, timeout).until(EC.element_to_be_clickable((By.ID, "dj_close_label")))
             back_button = browser.find_element_by_id("dj_close_label").click()
 
         # If the end of the asked period is reached, enterinate if needed and stop
         if (end_date - end_adp_date).days <= 0:
             # Enterinate if required
             if enterinator:
-                wait(browser, 15).until(
+                wait(browser, timeout).until(
                     EC.element_to_be_clickable((By.ID, "entBtn_label"))
                 )
                 enterinate_button = browser.find_element_by_id("entBtn_label").click()
                 # Enter end date before enterination on last week
-                wait(browser, 15).until(
+                wait(browser, timeout).until(
                     EC.element_to_be_clickable((By.ID, "date_enteriner"))
                 )
                 if end_date.weekday() == 4:
@@ -441,7 +442,7 @@ def fill_adp():
                 enterination_date = browser.find_element_by_id("date_enteriner")
                 enterination_date.send_keys(Keys.CONTROL + "a")
                 enterination_date.send_keys(date_formatted)
-                wait(browser, 15).until(
+                wait(browser, timeout).until(
                     EC.element_to_be_clickable((By.ID, "entBtn2_label"))
                 )
                 enterinate_button2 = browser.find_element_by_id("entBtn2_label").click()
@@ -465,18 +466,18 @@ def fill_adp():
         else:
             # Enterinate if required
             if enterinator:
-                wait(browser, 15).until(
+                wait(browser, timeout).until(
                     EC.element_to_be_clickable((By.ID, "entBtn_label"))
                 )
                 enterinate_button = browser.find_element_by_id("entBtn_label").click()
-                wait(browser, 15).until(
+                wait(browser, timeout).until(
                     EC.element_to_be_clickable((By.ID, "entBtn2_label"))
                 )
                 enterinate_button2 = browser.find_element_by_id("entBtn2_label").click()
 
-            wait(browser, 15).until(EC.element_to_be_clickable((By.ID, "btnNext")))
+            wait(browser, timeout).until(EC.element_to_be_clickable((By.ID, "btnNext")))
             browser.find_element_by_id("btnNext").click()
-            wait(browser, 15).until(EC.element_to_be_clickable((By.ID, "btnNext")))
+            wait(browser, timeout).until(EC.element_to_be_clickable((By.ID, "btnNext")))
 
     print("ADPROUT Execution Success !!")
 
