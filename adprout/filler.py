@@ -82,6 +82,7 @@ def fill_adp():
 
     # Open drown down menu "Temps et Activites" and click the link "Gestion des temps..."
     wait(browser, timeout).until(EC.element_to_be_clickable((By.ID, "menu_2_navItem_label")))
+    time.sleep(0.4)
     link1 = browser.find_element_by_id("menu_2_navItem_label")
     link1.click()
     wait(browser, timeout).until(
