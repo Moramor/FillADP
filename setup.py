@@ -17,7 +17,7 @@ def get_dependencies():
 
 setup(
     name="adprout",
-    version="1.0.0",
+    version="2.0.0",
     description="Automatically fill ADP day to day hours and projects with the same hours and the same project",
     url="https://github.com/Moramor/ADPROUT",
     entry_points={"console_scripts": ["adprout=adprout.filler:fill_adp"]},
