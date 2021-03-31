@@ -395,8 +395,11 @@ def fill_adp():
                     ]
 
                     duration_field = browser.find_element_by_id("VALEUR")
-                    duration_field.send_keys(Keys.CONTROL + "a")
-                    duration_field.send_keys(global_duration)
+                    
+                    duration_field.send_keys(Keys.HOME, Keys.DELETE, global_duration[0], Keys.DELETE,
+                         global_duration[1], Keys.DELETE, global_duration[2], Keys.DELETE,
+                         global_duration[3], Keys.DELETE, global_duration[4])
+
                     # Validation button
                     wait(browser, timeout).until(
                         EC.element_to_be_clickable((By.ID, "ValiderPopupAct_label"))
