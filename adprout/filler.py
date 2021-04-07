@@ -395,7 +395,7 @@ def fill_adp():
                     ]
 
                     duration_field = browser.find_element_by_id("VALEUR")
-                    
+
                     duration_field.send_keys(Keys.HOME, Keys.DELETE, global_duration[0], Keys.DELETE,
                          global_duration[1], Keys.DELETE, global_duration[2], Keys.DELETE,
                          global_duration[3], Keys.DELETE, global_duration[4])
@@ -463,6 +463,7 @@ def fill_adp():
                 )
                 with open(script_data_folder + "/adprout_fill.txt", "w+") as txt:
                     txt.write(last_fill)
+                print("Enterination executed to date: " + last_fill)
 
             break # break out of looping over weeks
 
