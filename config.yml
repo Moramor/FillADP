@@ -1,0 +1,12 @@
+start_date_str: null    # Filling start date in format DD-MM-YYYY. Leave null to fill from the previously filled day
+end_date_str: null              # Filling end date in format DD-MM-YYYY. Leave null to fill adp up to the previous day
+morning_start_time_str: "09:30"   # Morning arrival time start in HH:MM 24-hours format
+evening_end_time_str: "18:24"     # Evening leave time start in HH:MM 24-hours format
+lunch_break_time_start: "12:30"   # Lunch break time start in HH:MM 24-hours format
+lunch_break_time_end: "14:00"     # Lunch break time end in HH:MM 24-hours format
+domaine_name: "DEVELOPPEMENT PLATEFORME"    # Domaine name for activity information. Available in the scroll down menu in ADP. Write between " "
+poste_name: "MULTIPLATEFORME SOFTW"         # Poste name for activity information. Available in the scroll down menu in ADP. Write between " "
+enterinator: False                          # Enterinate after filling. True or False
+operating_system: "win64"                     # Operating system. Values: win64 win32 linux64 mac64
+adp_url: null   # ADP URL. Fill with the URL displayed in your browser when you enter ADP
+timeout: 45   # Timeout in seconds when a request on web page cannot be done
