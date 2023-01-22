@@ -35,7 +35,8 @@ and change the default values according to you as they will not change much for 
 # INSTRUCTIONS
 
 First, open config.yml with a text editor and fill the configuration variables according to your needs.
-If this is your first use of ADPROUT, also fill adprout/last_filled with the date of the last enterinated entry in your ADP calendar.
+If this is your first use of FillADP, also fill adprout/last_filled with the date of the last enterinated entry in your ADP calendar.
+The command will be named adprout (ADP rapid organizer and uploader of timestamps)
 
 Then open a bash into the repo root folder and enter
  
@@ -50,7 +51,7 @@ After running adprout once and checking everything was correctly filled, you can
 
 This tool is basically a clickbot on a webbrowser. Avoid having your mouse over the browser when the bot is running
 as unvolontarily hovering over a menu could prevent other actions. Timeout errors can happen if your connexion
-or computer is too slow. Try running the tool again as those errors are not happening consistently.
+or computer are too slow. Try running the tool again as those errors are not happening consistently.
 
 Once the browser is launched after running the command you can reduce/unfocus the browser window.
 
