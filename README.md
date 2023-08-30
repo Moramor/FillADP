@@ -40,14 +40,14 @@ The command will be named adprout (ADP rapid organizer and uploader of timestamp
 
 Then open a bash into the repo root folder and enter
  
-    python -m pip install .     # This installs the adprout command
+    python -m pip install .     # This installs the filladp command
 then
 
-    adprout         # This starts filling your adp with enterination OFF
+    filladp         # This starts filling your adp with enterination OFF
     
 After running adprout once and checking everything was correctly filled, you can now run
 
-    adprout -Z      # This starts filling your adp with enterination ON
+    filladp -Z      # This starts filling your adp with enterination ON
 
 This tool is basically a clickbot on a webbrowser. Avoid having your mouse over the browser when the bot is running
 as unvolontarily hovering over a menu could prevent other actions. Timeout errors can happen if your connexion
